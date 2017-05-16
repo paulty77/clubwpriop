@@ -1,0 +1,31 @@
+import React from 'react'
+import { render } from 'react-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import { Provider } from 'react-redux'
+import store from './store.js'
+import HomeScreen from './containers/HomeScreen'
+import VoteScreen from './containers/VoteScreen'
+import ScoreScreen from './containers/ScoreScreen'
+import AdminScreen from './containers/AdminScreen'
+import './styles/Main.css'
+
+injectTapEventPlugin()
+
+render(
+  <Provider store={store}>
+    <MuiThemeProvider muiTheme={getMuiTheme()}>
+      <Router>
+        <div>
+          <Route exact path='/' component={HomeScreen} />
+          <Route exact path='/score' component={ScoreScreen} />
+          <Route exact path='/admin' component={AdminScreen} />
+          <Route exact path='/vote' component={VoteScreen} />
+        </div>
+      </Router>
+    </MuiThemeProvider>
+  </Provider>
+  , document.getElementById('root')
+)

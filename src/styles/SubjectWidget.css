@@ -1,0 +1,20 @@
+.subject {
+  display :flex;
+  flex-wrap:  nowrap;
+  align-items: center;
+}
+
+
+.subject  .summary {
+  flex-grow :1;
+}
+
+.subject .actions {
+  margin : auto 0 0.25em 0.5em ;
+  flex-shrink:   0;
+  justify-content : top;
+}
+
+.subject .button {
+  margin : 0.25em;
+}
