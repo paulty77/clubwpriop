@@ -6,6 +6,7 @@ import ResultWidget from '../components/ResultWidget'
 import OpenClose from '../components/OpenClose'
 import {setStatusVote} from '../action-creators'
 import callAPI from '../lib/api'
+import { REFRESH_INTERVAL } from '../lib/globals'
 
 export class SettingsScreen extends Component {
   constructor (props) {
@@ -22,7 +23,7 @@ export class SettingsScreen extends Component {
   }
 
   componentDidMount () {
-    this.timer = setInterval(() => this.setData(), 1000)
+    this.timer = setInterval(() => this.setData(), REFRESH_INTERVAL)
   }
 
   componentWillUnmount () {

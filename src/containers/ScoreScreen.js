@@ -5,6 +5,7 @@ import ResultWidget from '../components/ResultWidget'
 import callAPI from '../lib/api'
 import AppBar from 'material-ui/AppBar'
 import Sticky from 'react-stickynode'
+import { REFRESH_INTERVAL } from '../lib/globals'
 
 export class ScoreScreen extends Component {
   constructor (props) {
@@ -21,7 +22,7 @@ export class ScoreScreen extends Component {
   }
 
   componentDidMount () {
-    this.timer = setInterval(() => this.setData(), 1000)
+    this.timer = setInterval(() => this.setData(), REFRESH_INTERVAL)
   }
 
   componentWillUnmount () {
