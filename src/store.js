@@ -11,7 +11,8 @@ const DEFAULT_STATE = {
   currentUser: {
     email: null,
     idUser: null,
-    statusVote: 'vote-closed'
+    statusVote: null,
+    apiState: null
   },
   subjects: []
 }

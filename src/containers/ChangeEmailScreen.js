@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { emailChange } from '../action-creators'
+import { emailChange, emailInSuccess } from '../action-creators'
 import DocumentTitle from 'react-document-title'
 import RaisedButton from 'material-ui/RaisedButton'
 import {Card, CardActions, CardText} from 'material-ui/Card'
@@ -23,11 +23,13 @@ export class ChangeEmailScreen extends Component {
 
   change (event) {
     event.preventDefault()
-    this.props.dispatch(emailChange(this.props.idUser, this.state.value))
+    this.props.dispatch(emailChange(this.props.idUser, this.state.value)).then(() =>
+      this.setState({formState: 'submit'})
+    )
   }
 
   render () {
-    const snackbar = this.props && this.props.statusVote === 'error'
+    const snackbar = this.props && this.props.apiState === 'error' && this.state.formState === 'submit'
       ? <Snackbar open message='Email non modifiée' autoHideDuration={3000} />
       : ''
 
@@ -48,7 +50,7 @@ export class ChangeEmailScreen extends Component {
                 fullWidth
                 required
                 value={this.state.value}
-                onChange={(event) => this.setState({value: event.target.value})} />
+                onChange={(event) => this.setState({value: event.target.value, formState: null})} />
             </CardText>
             <CardActions>
               <RaisedButton label='Retour' secondary containerElement={<Link to='/' />} />
@@ -62,6 +64,6 @@ export class ChangeEmailScreen extends Component {
   }
 }
 
-const mapStateToProps = ({subjects, currentUser: { email, idUser, statusVote}}) => ({subjects, email, idUser, statusVote})
+const mapStateToProps = ({subjects, currentUser: {email, idUser, statusVote, apiState}}) => ({subjects, email, idUser, statusVote, apiState})
 
 export default connect(mapStateToProps)(ChangeEmailScreen)

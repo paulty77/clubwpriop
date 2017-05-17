@@ -20,7 +20,7 @@ export class EmailScreen extends Component {
   }
 
   render () {
-    const snackbar = this.props && this.props.statusVote === 'error'
+    const snackbar = this.props && this.props.apiState === 'error'
       ? <Snackbar open message='Vote clos pour le moment' autoHideDuration={3000} />
       : ''
 
@@ -49,5 +49,5 @@ export class EmailScreen extends Component {
   }
 }
 
-const mapStateToProps = ({currentUser: {statusVote}}) => ({statusVote})
+const mapStateToProps = ({currentUser: {statusVote, apiState}}) => ({statusVote, apiState})
 export default connect(mapStateToProps)(EmailScreen)
