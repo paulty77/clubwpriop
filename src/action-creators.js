@@ -4,6 +4,9 @@ import callAPI from './lib/api'
 export const USER_EMAIL_START = '@@CLUBWPRIOP/AUTH_EMAIL_START'
 export const USER_EMAIL_SUCCESS = '@@CLUBWPRIOP/AUTH_EMAIL_SUCCESS'
 export const USER_EMAIL_FAILURE = '@@CLUBWPRIOP/AUTH_EMAIL_FAILURE'
+export const CHANGE_EMAIL_START = '@@CLUBWPRIOP/CHANGE_EMAIL_START'
+export const CHANGE_EMAIL_SUCCESS = '@@CLUBWPRIOP/CHANGE_EMAIL_SUCCESS'
+export const CHANGE_EMAIL_FAILURE = '@@CLUBWPRIOP/CHANGE_EMAIL_FAILURE'
 
 export function emailIn (email) {
   return async (dispatch) => {
@@ -37,6 +40,40 @@ export function emailInStart () {
 
 export function emailInSuccess (email, idUser, statusVote) {
   return {type: USER_EMAIL_SUCCESS, payload: {email, idUser, statusVote}}
+}
+
+export function emailChange (idUser, email) {
+  return async (dispatch) => {
+    dispatch(emailChangeStart())
+    try {
+      const action = `/user?email=${email}&id=${idUser}`
+      const response = await callAPI({
+        action,
+        method: 'PUT'
+      })
+
+      if (response.hasOwnProperty('email')) {
+        dispatch(emailChangeSuccess(email))
+      } else {
+        dispatch(emailChangeFailure())
+      }
+    } catch (err) {
+      dispatch(emailChangeFailure())
+      console.error(err)
+    }
+  }
+}
+
+export function emailChangeFailure () {
+  return {type: CHANGE_EMAIL_FAILURE}
+}
+
+export function emailChangeStart () {
+  return {type: CHANGE_EMAIL_START}
+}
+
+export function emailChangeSuccess (email) {
+  return {type: CHANGE_EMAIL_SUCCESS, payload: {email}}
 }
 
 /** subjects **/

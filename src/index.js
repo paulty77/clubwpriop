@@ -10,6 +10,7 @@ import HomeScreen from './containers/HomeScreen'
 import VoteScreen from './containers/VoteScreen'
 import ScoreScreen from './containers/ScoreScreen'
 import AdminScreen from './containers/AdminScreen'
+import ChangeEmailScreen from './containers/ChangeEmailScreen'
 import './styles/Main.css'
 
 injectTapEventPlugin()
@@ -23,6 +24,7 @@ render(
           <Route exact path='/score' component={ScoreScreen} />
           <Route exact path='/admin' component={AdminScreen} />
           <Route exact path='/vote' component={VoteScreen} />
+          <Route exact path='/change' component={ChangeEmailScreen} />
         </div>
       </Router>
     </MuiThemeProvider>
