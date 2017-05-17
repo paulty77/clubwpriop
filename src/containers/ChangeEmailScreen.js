@@ -14,7 +14,7 @@ export class ChangeEmailScreen extends Component {
   constructor (props) {
     super(props)
     this.change = this.change.bind(this)
-    this.state = {value: ''}
+    this.state = {value: props.email ? props.email : ''}
   }
 
   componentWillReceiveProps (nextProps) {
