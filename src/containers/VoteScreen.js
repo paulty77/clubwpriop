@@ -11,12 +11,24 @@ import Sticky from 'react-stickynode'
 import AppBar from 'material-ui/AppBar'
 import FlatButton from 'material-ui/FlatButton'
 import '../styles/Vote.css'
+import MenuNavigation from '../components/MenuNavigation'
 
 export class VoteScreen extends Component {
+  constructor (props) {
+    super(props)
+    this.openMenu = this.openMenu.bind(this)
+    this.state = {open: false}
+  }
+
   componentDidMount () {
     if (!this.props.email || this.props.subjects.length === 0) {
       return (<Redirect to='/' />)
     }
+  }
+
+  openMenu (event) {
+    event.preventDefault()
+    this.setState({open: true})
   }
 
   render () {
@@ -29,9 +41,10 @@ export class VoteScreen extends Component {
     return (
       <DocumentTitle title='Votez'>
         <div>
+          <MenuNavigation open={this.state.open} />
           <Card>
             <Sticky innerZ={100}>
-              <AppBar title='Club Wpriop' showMenuIconButton={false} iconElementRight={<FlatButton label='Info' containerElement={<Link to='/' />} />} />
+              <AppBar title='Club Wpriop' onLeftIconButtonTouchTap={this.openMenu} iconElementRight={<FlatButton label='Info' containerElement={<Link to='/' />} />} />
               <div className='stars'>{stars}</div>
             </Sticky>
             <CardText>

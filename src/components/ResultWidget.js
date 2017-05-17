@@ -1,5 +1,5 @@
 import React from 'react'
-import { ToggleStar } from 'material-ui/svg-icons'
+import ToggleStar from 'material-ui/svg-icons/toggle/star'
 import { colors } from 'material-ui/styles'
 import '../styles/ResultWidget.css'
 

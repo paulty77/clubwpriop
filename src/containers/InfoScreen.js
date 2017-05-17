@@ -7,29 +7,42 @@ import {connect} from 'react-redux'
 import AppBar from 'material-ui/AppBar'
 import Sticky from 'react-stickynode'
 import FlatButton from 'material-ui/FlatButton'
+import MenuNavigation from '../components/MenuNavigation'
 
 export class InfoScreen extends Component {
+  constructor (props) {
+    super(props)
+    this.openMenu = this.openMenu.bind(this)
+    this.state = {open: false}
+  }
+
+  openMenu (event) {
+    event.preventDefault()
+    this.setState({open: true})
+  }
+
   render () {
     return (
       <DocumentTitle title='Informations'>
-        <Card>
-          <Sticky innerZ={100}>
-            <AppBar
-              title='Club Wpriop'
-              showMenuIconButton={false}
-              iconElementRight={<FlatButton label={this.props.statusVote === 'vote-opened' ? 'Voter' : 'Voir les votes'} containerElement={<Link to='/vote' />} />}
-            />
-          </Sticky>
-          <CardText>
-            <p>Information en attente</p>
-          </CardText>
-          <CardActions>
-            <RaisedButton
-              label={this.props.statusVote === 'vote-opened' ? 'Voter' : 'Voir les votes'}
-              secondary
-              containerElement={<Link to='/vote' />} />
-          </CardActions>
-        </Card>
+        <div>
+          <MenuNavigation open={this.state.open} />
+          <Card>
+            <Sticky innerZ={100}>
+              <AppBar
+                title='Club Wpriop' onLeftIconButtonTouchTap={this.openMenu} iconElementRight={<FlatButton label={this.props.statusVote === 'vote-opened' ? 'Voter' : 'Voir les votes'}
+                  containerElement={<Link to='/vote' />} />} />
+            </Sticky>
+            <CardText>
+              <p>Information en attente</p>
+            </CardText>
+            <CardActions>
+              <RaisedButton
+                label={this.props.statusVote === 'vote-opened' ? 'Voter' : 'Voir les votes'}
+                secondary
+                containerElement={<Link to='/vote' />} />
+            </CardActions>
+          </Card>
+        </div>
       </DocumentTitle>
     )
   }

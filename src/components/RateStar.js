@@ -1,4 +1,4 @@
-import {ToggleStar} from 'material-ui/svg-icons'
+import ToggleStar from 'material-ui/svg-icons/toggle/star'
 import React from 'react'
 import { colors } from 'material-ui/styles'
 
