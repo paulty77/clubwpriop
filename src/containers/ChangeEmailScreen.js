@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { emailChange, emailInSuccess } from '../action-creators'
+import { emailChange } from '../action-creators'
 import DocumentTitle from 'react-document-title'
 import RaisedButton from 'material-ui/RaisedButton'
 import {Card, CardActions, CardText} from 'material-ui/Card'
