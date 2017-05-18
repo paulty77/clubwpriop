@@ -11,6 +11,7 @@ export class ScoreScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {results: []}
+    this.setData()
   }
 
   async setData () {
@@ -35,7 +36,7 @@ export class ScoreScreen extends Component {
         <div>
           <Sticky innerZ={100}>
             <AppBar
-              title='Club Wpriop'
+              title='Club Logo - 8 juin 2017'
               showMenuIconButton={false}
             />
           </Sticky>
