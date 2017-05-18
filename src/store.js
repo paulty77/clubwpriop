@@ -12,7 +12,8 @@ const DEFAULT_STATE = {
     email: null,
     idUser: null,
     statusVote: null,
-    apiState: null
+    apiState: null,
+    menuOpen: false
   },
   subjects: []
 }

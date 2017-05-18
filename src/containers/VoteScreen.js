@@ -4,7 +4,7 @@ import DocumentTitle from 'react-document-title'
 import {Card, CardActions, CardText} from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
 import { Link, Redirect } from 'react-router-dom'
-import { addPoint, removePoint, MAX_POINTS } from '../action-creators'
+import { addPoint, removePoint, MAX_POINTS, toggleMenu } from '../action-creators'
 import SubjectWidget from '../components/SubjectWidget'
 import RateStar from '../components/RateStar'
 import Sticky from 'react-stickynode'
@@ -14,25 +14,14 @@ import '../styles/Vote.css'
 import MenuNavigation from '../components/MenuNavigation'
 
 export class VoteScreen extends Component {
-  constructor (props) {
-    super(props)
-    this.openMenu = this.openMenu.bind(this)
-    this.state = {open: false}
-  }
-
   componentDidMount () {
     if (!this.props.email || this.props.subjects.length === 0) {
       return (<Redirect to='/' />)
     }
   }
 
-  openMenu (event) {
-    event.preventDefault()
-    this.setState({open: true})
-  }
-
   render () {
-    const { subjects, dispatch, statusVote, idUser } = this.props
+    const { subjects, dispatch, statusVote, idUser, menuOpen } = this.props
     const totalSubjects = subjects.length !== 0
       ? subjects.reduce((tot, subject) => ({points: tot.points + subject.points})) : 0
 
@@ -41,10 +30,10 @@ export class VoteScreen extends Component {
     return (
       <DocumentTitle title='Votez'>
         <div>
-          <MenuNavigation open={this.state.open} />
+          <MenuNavigation open={menuOpen} onClose={() => dispatch(toggleMenu(false))} />
           <Card>
             <Sticky innerZ={100}>
-              <AppBar title='Club Wpriop' onLeftIconButtonTouchTap={this.openMenu} iconElementRight={<FlatButton label='Info' containerElement={<Link to='/' />} />} />
+              <AppBar title='Club Wpriop' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} iconElementRight={<FlatButton label='Info' containerElement={<Link to='/' />} />} />
               <div className='stars'>{stars}</div>
             </Sticky>
             <CardText>
@@ -70,6 +59,6 @@ export class VoteScreen extends Component {
   }
 }
 
-const mapStateToProps = ({subjects, currentUser: { email, idUser, statusVote }}) => ({subjects, email, idUser, statusVote})
+const mapStateToProps = ({subjects, currentUser: { email, idUser, statusVote, menuOpen }}) => ({subjects, email, idUser, statusVote, menuOpen})
 
 export default connect(mapStateToProps)(VoteScreen)

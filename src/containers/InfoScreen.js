@@ -8,28 +8,19 @@ import AppBar from 'material-ui/AppBar'
 import Sticky from 'react-stickynode'
 import FlatButton from 'material-ui/FlatButton'
 import MenuNavigation from '../components/MenuNavigation'
+import { toggleMenu } from '../action-creators'
 
 export class InfoScreen extends Component {
-  constructor (props) {
-    super(props)
-    this.openMenu = this.openMenu.bind(this)
-    this.state = {open: false}
-  }
-
-  openMenu (event) {
-    event.preventDefault()
-    this.setState({open: true})
-  }
-
   render () {
+    const { dispatch, statusVote, menuOpen } = this.props
     return (
       <DocumentTitle title='Informations'>
         <div>
-          <MenuNavigation open={this.state.open} />
+          <MenuNavigation open={menuOpen} onClose={() => dispatch(toggleMenu(false))} />
           <Card>
             <Sticky innerZ={100}>
               <AppBar
-                title='Club Wpriop' onLeftIconButtonTouchTap={this.openMenu} iconElementRight={<FlatButton label={this.props.statusVote === 'vote-opened' ? 'Voter' : 'Voir les votes'}
+                title='Club Wpriop' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} iconElementRight={<FlatButton label={statusVote === 'vote-opened' ? 'Voter' : 'Voir les votes'}
                   containerElement={<Link to='/vote' />} />} />
             </Sticky>
             <CardText>
@@ -48,6 +39,6 @@ export class InfoScreen extends Component {
   }
 }
 
-const mapStateToProps = ({currentUser: { statusVote }}) => ({statusVote})
+const mapStateToProps = ({currentUser: { statusVote, menuOpen }}) => ({ statusVote, menuOpen })
 
 export default connect(mapStateToProps)(InfoScreen)
