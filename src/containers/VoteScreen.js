@@ -29,7 +29,7 @@ export class VoteScreen extends Component {
     return (
       <DocumentTitle title='Votez'>
         <div>
-          <MenuNavigation open={menuOpen} onClose={() => dispatch(toggleMenu(false))} />
+          <MenuNavigation open={menuOpen} onClose={() => dispatch(toggleMenu(false))} menuEmail={() => true} />
           <Card>
             <Sticky innerZ={100}>
               <AppBar title='Club Wpriop' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
