@@ -9,7 +9,6 @@ import SubjectWidget from '../components/SubjectWidget'
 import RateStar from '../components/RateStar'
 import Sticky from 'react-stickynode'
 import AppBar from 'material-ui/AppBar'
-import FlatButton from 'material-ui/FlatButton'
 import '../styles/Vote.css'
 import MenuNavigation from '../components/MenuNavigation'
 
@@ -33,7 +32,7 @@ export class VoteScreen extends Component {
           <MenuNavigation open={menuOpen} onClose={() => dispatch(toggleMenu(false))} />
           <Card>
             <Sticky innerZ={100}>
-              <AppBar title='Club Wpriop' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} iconElementRight={<FlatButton label='Info' containerElement={<Link to='/' />} />} />
+              <AppBar title='Club Wpriop' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
               <div className='stars'>{stars}</div>
             </Sticky>
             <CardText>
@@ -49,7 +48,7 @@ export class VoteScreen extends Component {
                 )
               }
             </CardText>
-            <CardActions>
+            <CardActions style={{textAlign: 'right'}}>
               <RaisedButton label='Retour' secondary containerElement={<Link to='/' />} />
             </CardActions>
           </Card>

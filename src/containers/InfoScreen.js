@@ -6,7 +6,6 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import AppBar from 'material-ui/AppBar'
 import Sticky from 'react-stickynode'
-import FlatButton from 'material-ui/FlatButton'
 import MenuNavigation from '../components/MenuNavigation'
 import { toggleMenu } from '../action-creators'
 
@@ -16,19 +15,21 @@ export class InfoScreen extends Component {
     return (
       <DocumentTitle title='Informations'>
         <div>
-          <MenuNavigation open={menuOpen} onClose={() => dispatch(toggleMenu(false))} />
+          <MenuNavigation open={menuOpen} onClose={() => dispatch(toggleMenu(false))} menuEmail={() => true} />
           <Card>
             <Sticky innerZ={100}>
               <AppBar
-                title='Club Wpriop' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} iconElementRight={<FlatButton label={statusVote === 'vote-opened' ? 'Voter' : 'Voir les votes'}
-                  containerElement={<Link to='/vote' />} />} />
+                title='Club Wpriop' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
             </Sticky>
-            <CardText>
-              <p>Information en attente</p>
+            <CardText >
+              Cher client,<br /><br />
+              Bienvenue au Club WPRIOP !<br />
+              Vous disposez de 10 * à répartir pour l’ensemble de la liste des évolutions proposées ci-dessous en fonction de vos intérêts.
+              Vous n’êtes pas limités à un nombre d’étoiles par item.
             </CardText>
-            <CardActions>
+            <CardActions style={{ textAlign: 'center' }}>
               <RaisedButton
-                label={this.props.statusVote === 'vote-opened' ? 'Voter' : 'Voir les votes'}
+                label={statusVote === 'vote-opened' ? 'Accèdez au sondage' : 'Voir les votes'}
                 secondary
                 containerElement={<Link to='/vote' />} />
             </CardActions>
