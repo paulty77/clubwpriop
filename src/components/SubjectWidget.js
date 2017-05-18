@@ -4,9 +4,10 @@ import ContentRemove from 'material-ui/svg-icons/content/remove'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import RateStar from './RateStar'
 import '../styles/SubjectWidget.css'
+import { COLOR_LOGAVIV } from '../lib/globals'
 
 const SubjectWidget = ({subject: { label, points }, onAdd, onRemove, canAdd, canRemove}) => {
-  const buttonAdd = <FloatingActionButton mini className='button' onClick={onAdd} disabled={!canAdd}><ContentAdd /></FloatingActionButton>
+  const buttonAdd = <FloatingActionButton mini className='button' backgroundColor={COLOR_LOGAVIV} onClick={onAdd} disabled={!canAdd}><ContentAdd /></FloatingActionButton>
   const buttonRemove = <FloatingActionButton mini secondary className='button' onClick={onRemove} disabled={!canRemove}><ContentRemove /> </FloatingActionButton>
 
   return (
@@ -16,8 +17,8 @@ const SubjectWidget = ({subject: { label, points }, onAdd, onRemove, canAdd, can
           <h2>{label}</h2>
         </div>
         <div className='actions'>
-          {buttonAdd}
           {buttonRemove}
+          {buttonAdd}
         </div>
       </div>
       <RateStar total={points} />

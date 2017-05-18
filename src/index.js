@@ -12,12 +12,20 @@ import ScoreScreen from './containers/ScoreScreen'
 import AdminScreen from './containers/AdminScreen'
 import ChangeEmailScreen from './containers/ChangeEmailScreen'
 import './styles/Main.css'
+import {grey500} from 'material-ui/styles/colors'
 
 injectTapEventPlugin()
 
+const muiTheme = getMuiTheme({
+  palette: {
+    primary1Color: '#1072ad',
+    accent1Color: grey500
+  }
+})
+
 render(
   <Provider store={store}>
-    <MuiThemeProvider muiTheme={getMuiTheme()}>
+    <MuiThemeProvider muiTheme={muiTheme}>
       <Router>
         <div>
           <Route exact path='/' component={HomeScreen} />

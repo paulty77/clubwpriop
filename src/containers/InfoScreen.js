@@ -19,7 +19,7 @@ export class InfoScreen extends Component {
           <Card>
             <Sticky innerZ={100}>
               <AppBar
-                title='Club Wpriop' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
+                title='Club Logo - 8 juin 2017' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
             </Sticky>
             <CardText >
               Cher client,<br /><br />
@@ -30,7 +30,7 @@ export class InfoScreen extends Component {
             <CardActions style={{ textAlign: 'center' }}>
               <RaisedButton
                 label={statusVote === 'vote-opened' ? 'Accèdez au sondage' : 'Voir les votes'}
-                secondary
+                primary
                 containerElement={<Link to='/vote' />} />
             </CardActions>
           </Card>

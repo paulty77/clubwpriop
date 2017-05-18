@@ -1,7 +1,7 @@
 import React from 'react'
 import ToggleStar from 'material-ui/svg-icons/toggle/star'
-import { colors } from 'material-ui/styles'
 import '../styles/ResultWidget.css'
+import { COLOR_LOGAVIV } from '../lib/globals'
 
 const ResultWidget = ({ result: { label, points } }) => {
   return (
@@ -11,7 +11,7 @@ const ResultWidget = ({ result: { label, points } }) => {
           <h2>{label}</h2>
         </div>
         <div className='points'>
-          {points} <ToggleStar color={colors.orange400} />
+          {points} <ToggleStar color={COLOR_LOGAVIV} />
         </div>
       </div>
     </div>

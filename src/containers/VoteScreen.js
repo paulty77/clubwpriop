@@ -25,14 +25,14 @@ export class VoteScreen extends Component {
       ? subjects.reduce((tot, subject) => ({points: tot.points + subject.points})) : 0
 
     const total = statusVote === 'vote-opened' ? MAX_POINTS - totalSubjects.points : 0
-    const stars = statusVote === 'vote-closed' ? 'Les votes sont clos' : <RateStar total={total} />
+    const stars = statusVote === 'vote-closed' ? 'Les votes sont clos' : (<span>A répartir :<RateStar total={total} /></span>)
     return (
       <DocumentTitle title='Votez'>
         <div>
           <MenuNavigation open={menuOpen} onClose={() => dispatch(toggleMenu(false))} menuEmail={() => true} />
           <Card>
             <Sticky innerZ={100}>
-              <AppBar title='Club Wpriop' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
+              <AppBar title='Votez sur les évolutions futures' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
               <div className='stars'>{stars}</div>
             </Sticky>
             <CardText>
@@ -49,7 +49,7 @@ export class VoteScreen extends Component {
               }
             </CardText>
             <CardActions style={{textAlign: 'right'}}>
-              <RaisedButton label='Retour' secondary containerElement={<Link to='/' />} />
+              <RaisedButton label='Retour' primary containerElement={<Link to='/' />} />
             </CardActions>
           </Card>
         </div>
