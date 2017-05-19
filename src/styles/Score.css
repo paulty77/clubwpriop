@@ -1,6 +1,24 @@
-.score {
+.score .body{
       padding: 16px;
     font-size: 14px;
     color: rgba(0, 0, 0, 0.87);
     font-family: Roboto, sans-serif;
+}
+
+
+.score .title {
+  display :flex;
+  flex-wrap:  nowrap;
+  align-items: center;
+}
+
+
+
+.subject  .title .summary {
+  flex-grow :1;
+}
+
+.subject .title .logo {
+  margin : auto 0 0.25em 0.5em ;
+  flex-shrink:   0;
 }

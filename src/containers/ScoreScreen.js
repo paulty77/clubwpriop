@@ -36,13 +36,16 @@ export class ScoreScreen extends Component {
       ? this.state.results.reduce((tot, subject) => ({points: tot.points + subject.points}))
       : 0
 
-    const title = (<span>Club <img src={LogoW} height={'20vh'} /> - votre avis sur les évolutions futures de WPRIOP - 8 juin 2017 <img src={LogoL} height={'20vh'} /></span>)
+    const title = (
+      <div className='title'>
+        Club <img src={LogoW} height={'20vh'} /> - votre avis sur les évolutions futures de WPRIOP - 8 juin 2017 <img src={LogoL} height={'40vh'} />
+      </div>)
 
     return (
       <DocumentTitle title='Résultat des votes'>
-        <div >
+        <div className='score'>
           <AppBar title={title} showMenuIconButton={false} />
-          <div className='score'>
+          <div className='body'>
             {
               this.state.results.map((result) =>
                 <ResultWidget label={result.label} points={result.points} total={subjectsCummulate.points} key={result.id} />
