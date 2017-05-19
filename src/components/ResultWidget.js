@@ -1,20 +1,22 @@
 import React from 'react'
-import ToggleStar from 'material-ui/svg-icons/toggle/star'
 import '../styles/ResultWidget.css'
-import { COLOR_LOGAVIV } from '../lib/globals'
 
-const ResultWidget = ({ result: { label, points } }) => {
+const ResultWidget = ({ label, points, total }) => {
+  const percent = Math.round(points * 100 / total)
+  const width = `${percent}%`
   return (
-    <div>
-      <div className='result'>
-        <div className='summary'>
-          <h2>{label}</h2>
-        </div>
-        <div className='points'>
-          {points} <ToggleStar color={COLOR_LOGAVIV} />
+    <div className='result' style={{margin: '0 0 8px 0'}}>
+      <div className='summary'>
+        <div className='title'>{label}</div>
+        <div className='bar' style={{width}}>
+          <div className='title'>{label}</div>
         </div>
       </div>
+      <div className='points'>
+        {width}
+      </div>
     </div>
+
   )
 }
 

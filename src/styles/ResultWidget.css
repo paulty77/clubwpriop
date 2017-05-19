@@ -9,10 +9,43 @@
 .result .summary {
   flex-grow :1;
   align-items : center;
+  position: relative;
+  background-color: rgb(238, 238, 238);
+}
+
+.result .summary .title {
+    padding: 20px;
+    position: relative;
+    color: #9E9E9E;
+    font-weight: bold;
+}
+
+.result .summary .bar {
+    background-color: rgb(103, 170, 46);
+    width: 43.6364%;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    overflow: hidden;
+
+}
+
+.result .summary .bar .title {
+    padding: 20px;
+    position: relative;
+    color: white;
+    white-space: nowrap;
+    font-weight: bold;
 }
 
 .result .points {
-  display: flex ;
-  align-items: center;
+    display: flex ;
+    align-items: center;
+    width: 2.5rem;
+    text-align: right;
+    justify-content: flex-end;
+    font-weight: bold;
+    color : #9E9E9E;
 }
 

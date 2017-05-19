@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import DocumentTitle from 'react-document-title'
-import {Card, CardText} from 'material-ui/Card'
 import ResultWidget from '../components/ResultWidget'
 import callAPI from '../lib/api'
 import AppBar from 'material-ui/AppBar'
-import Sticky from 'react-stickynode'
 import { REFRESH_INTERVAL } from '../lib/globals'
-import AppTitle from '../components/AppTitle'
+import LogoL from '../icons/logo_logaviv.svg'
+import LogoW from '../icons/logo-wpriop-blanc.svg'
+import '../styles/Score.css'
 
 export class ScoreScreen extends Component {
   constructor (props) {
@@ -32,24 +32,23 @@ export class ScoreScreen extends Component {
   }
 
   render () {
+    const subjectsCummulate = this.state.results.length !== 0
+      ? this.state.results.reduce((tot, subject) => ({points: tot.points + subject.points}))
+      : 0
+
+    const title = (<span>Club <img src={LogoW} height={'20vh'} /> - votre avis sur les évolutions futures de WPRIOP - 8 juin 2017 <img src={LogoL} height={'20vh'} /></span>)
+
     return (
       <DocumentTitle title='Résultat des votes'>
-        <div>
-          <Sticky innerZ={100}>
-            <AppBar
-              title={<AppTitle />}
-              showMenuIconButton={false}
-            />
-          </Sticky>
-          <Card>
-            <CardText>
+        <div >
+          <AppBar title={title} showMenuIconButton={false} />
+          <div className='score'>
               {
                   this.state.results.map((result) =>
-                    <ResultWidget result={result} key={result.id} />
+                    <ResultWidget label={result.label} points={result.points} total={subjectsCummulate.points} key={result.id} />
                   )
               }
-            </CardText>
-          </Card>
+          </div>
         </div>
       </DocumentTitle>
     )
