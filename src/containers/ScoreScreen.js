@@ -43,11 +43,11 @@ export class ScoreScreen extends Component {
         <div >
           <AppBar title={title} showMenuIconButton={false} />
           <div className='score'>
-              {
-                  this.state.results.map((result) =>
-                    <ResultWidget label={result.label} points={result.points} total={subjectsCummulate.points} key={result.id} />
-                  )
-              }
+            {
+              this.state.results.map((result) =>
+                <ResultWidget label={result.label} points={result.points} total={subjectsCummulate.points} key={result.id} />
+              )
+            }
           </div>
         </div>
       </DocumentTitle>
