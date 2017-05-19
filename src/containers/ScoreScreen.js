@@ -6,6 +6,7 @@ import callAPI from '../lib/api'
 import AppBar from 'material-ui/AppBar'
 import Sticky from 'react-stickynode'
 import { REFRESH_INTERVAL } from '../lib/globals'
+import AppTitle from '../components/AppTitle'
 
 export class ScoreScreen extends Component {
   constructor (props) {
@@ -36,7 +37,7 @@ export class ScoreScreen extends Component {
         <div>
           <Sticky innerZ={100}>
             <AppBar
-              title='Club Logo - 8 juin 2017'
+              title={<AppTitle />}
               showMenuIconButton={false}
             />
           </Sticky>

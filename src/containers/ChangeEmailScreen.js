@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { emailChange, toggleMenu } from '../action-creators'
+import { emailChange, toggleMenu, currentUserApiStateReset } from '../action-creators'
 import DocumentTitle from 'react-document-title'
 import RaisedButton from 'material-ui/RaisedButton'
 import {Card, CardActions, CardText} from 'material-ui/Card'
@@ -9,6 +9,9 @@ import Sticky from 'react-stickynode'
 import TextField from 'material-ui/TextField'
 import Snackbar from 'material-ui/Snackbar'
 import MenuNavigation from '../components/MenuNavigation'
+import AppTitle from '../components/AppTitle'
+import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward'
+import {red800, green700} from 'material-ui/styles/colors'
 
 export class ChangeEmailScreen extends Component {
   constructor (props) {
@@ -23,16 +26,15 @@ export class ChangeEmailScreen extends Component {
 
   change (event) {
     event.preventDefault()
-    this.props.dispatch(emailChange(this.props.idUser, this.state.value)).then(() =>
-      this.setState({formState: 'submit'})
-    )
+    this.props.dispatch(emailChange(this.props.idUser, this.state.value))
   }
 
   render () {
     const { dispatch, apiState, menuOpen } = this.props
-    const snackbar = this.props && this.state.formState === 'submit'
-      ? <Snackbar open message={apiState === 'success' ? 'Email modifié' : 'Email non modifiée'} autoHideDuration={3000} />
+    const snackbar = this.props && (apiState === 'error' || apiState === 'success')
+      ? <Snackbar open message={apiState === 'error' ? 'Email non modifié' : 'Email modifié'} onRequestClose={() => dispatch(currentUserApiStateReset())} bodyStyle={{ backgroundColor: apiState === 'error' ? red800 : green700 }} autoHideDuration={2000} />
       : ''
+    const logInIcon = apiState === 'pending' ? null : <ArrowForward />
 
     return (
       <DocumentTitle title='Changer son email'>
@@ -42,7 +44,7 @@ export class ChangeEmailScreen extends Component {
             <Card>
               <Sticky innerZ={100}>
                 <AppBar
-                  title='Club Wpriop' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
+                  title={<AppTitle />} onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
               </Sticky>
               <CardText>
                 <TextField type='email'
@@ -51,10 +53,10 @@ export class ChangeEmailScreen extends Component {
                   fullWidth
                   required
                   value={this.state.value}
-                  onChange={(event) => this.setState({value: event.target.value, formState: null})} />
+                  onChange={(event) => this.setState({value: event.target.value})} />
               </CardText>
               <CardActions>
-                <RaisedButton label='modifier' labelPosition='before' primary type='submit' />
+                <RaisedButton label='modifier' icon={logInIcon} labelPosition='before' primary type='submit' />
               </CardActions>
             </Card>
             {snackbar}

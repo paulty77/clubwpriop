@@ -11,6 +11,7 @@ import Sticky from 'react-stickynode'
 import AppBar from 'material-ui/AppBar'
 import '../styles/Vote.css'
 import MenuNavigation from '../components/MenuNavigation'
+import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 
 export class VoteScreen extends Component {
   componentDidMount () {
@@ -29,7 +30,7 @@ export class VoteScreen extends Component {
     return (
       <DocumentTitle title='Votez'>
         <div>
-          <MenuNavigation open={menuOpen} onClose={() => dispatch(toggleMenu(false))} menuEmail={() => true} />
+          <MenuNavigation open={menuOpen} onClose={() => dispatch(toggleMenu(false))} />
           <Card>
             <Sticky innerZ={100}>
               <AppBar title='Votez sur les évolutions futures' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
@@ -49,7 +50,7 @@ export class VoteScreen extends Component {
               }
             </CardText>
             <CardActions style={{textAlign: 'right'}}>
-              <RaisedButton label='Retour' primary containerElement={<Link to='/' />} />
+              <RaisedButton label='Retour' icon={<ArrowBack />} primary containerElement={<Link to='/' />} />
             </CardActions>
           </Card>
         </div>

@@ -34,6 +34,10 @@ module.exports = {
           fallback: 'style-loader',
           use: 'css-loader'
         })
+      },
+      {
+         test: /\.(gif|png|jpg|svg)$/,
+        use : { loader: 'url-loader' , options: {limit: 10000}}
       }
     ]
   },

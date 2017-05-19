@@ -7,6 +7,7 @@ export const USER_EMAIL_FAILURE = '@@CLUBWPRIOP/AUTH_EMAIL_FAILURE'
 export const CHANGE_EMAIL_START = '@@CLUBWPRIOP/CHANGE_EMAIL_START'
 export const CHANGE_EMAIL_SUCCESS = '@@CLUBWPRIOP/CHANGE_EMAIL_SUCCESS'
 export const CHANGE_EMAIL_FAILURE = '@@CLUBWPRIOP/CHANGE_EMAIL_FAILURE'
+export const CURRENTUSER_APISTATE_RESET = '@@CLUBWPRIOP/CHANGE_EMAIL_RESET'
 export const MENU_OPEN = '@@CLUBWPRIOP/MENU_OPEN'
 
 export function emailIn (email) {
@@ -75,6 +76,10 @@ export function emailChangeStart () {
 
 export function emailChangeSuccess (email) {
   return {type: CHANGE_EMAIL_SUCCESS, payload: {email}}
+}
+
+export function currentUserApiStateReset () {
+  return {type: CURRENTUSER_APISTATE_RESET}
 }
 
 export function toggleMenu (menuOpen) {
