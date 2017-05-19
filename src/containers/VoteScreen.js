@@ -4,7 +4,7 @@ import DocumentTitle from 'react-document-title'
 import {Card, CardActions, CardText} from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
 import { Link, Redirect } from 'react-router-dom'
-import { addPoint, removePoint, MAX_POINTS, toggleMenu } from '../action-creators'
+import { addPoint, removePoint, MAX_POINTS, toggleMenu, currentUserApiStateReset } from '../action-creators'
 import SubjectWidget from '../components/SubjectWidget'
 import RateStar from '../components/RateStar'
 import Sticky from 'react-stickynode'
@@ -12,6 +12,7 @@ import AppBar from 'material-ui/AppBar'
 import '../styles/Vote.css'
 import MenuNavigation from '../components/MenuNavigation'
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
+import Snackbar from 'material-ui/Snackbar'
 
 export class VoteScreen extends Component {
   componentDidMount () {
@@ -22,11 +23,13 @@ export class VoteScreen extends Component {
 
   render () {
     const { subjects, dispatch, statusVote, idUser, menuOpen } = this.props
-    const totalSubjects = subjects.length !== 0
-      ? subjects.reduce((tot, subject) => ({points: tot.points + subject.points})) : 0
-
+    const totalSubjects = subjects.length !== 0 ? subjects.reduce((tot, subject) => ({points: tot.points + subject.points})) : 0
     const total = statusVote === 'vote-opened' ? MAX_POINTS - totalSubjects.points : 0
     const stars = statusVote === 'vote-closed' ? 'Les votes sont clos' : (<span>A répartir :<RateStar total={total} /></span>)
+    const snackbar = this.props && this.props.apiState === 'error'
+      ? <Snackbar open message='Pas de réseau' autoHideDuration={2000} onRequestClose={() => dispatch(currentUserApiStateReset())} />
+      : ''
+
     return (
       <DocumentTitle title='Votez'>
         <div>
@@ -53,12 +56,13 @@ export class VoteScreen extends Component {
               <RaisedButton label='Retour' icon={<ArrowBack />} primary containerElement={<Link to='/' />} />
             </CardActions>
           </Card>
+          {snackbar}
         </div>
       </DocumentTitle>
     )
   }
 }
 
-const mapStateToProps = ({subjects, currentUser: { email, idUser, statusVote, menuOpen }}) => ({subjects, email, idUser, statusVote, menuOpen})
+const mapStateToProps = ({subjects, currentUser: { email, idUser, statusVote, menuOpen, apiState }}) => ({subjects, email, idUser, statusVote, menuOpen, apiState})
 
 export default connect(mapStateToProps)(VoteScreen)
