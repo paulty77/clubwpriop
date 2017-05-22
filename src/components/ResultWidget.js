@@ -5,7 +5,7 @@ const ResultWidget = ({ label, points, total }) => {
   const percent = Math.round(points * 100 / total)
   const width = `${percent}%`
   return (
-    <div className='result' style={{margin: '0 0 8px 0'}}>
+    <div className='result'>
       <div className='summary'>
         <div className='title'>{label}</div>
         <div className='bar' style={{width}}>
