@@ -5,7 +5,7 @@ import { COLOR_LOGAVIV } from '../lib/globals'
 const RateStar = ({total}) => {
   const stars = []
   for (var i = total; i >= 1; i--) {
-    stars.push(<ToggleStar key={i} color={COLOR_LOGAVIV} />)
+    stars.push(<ToggleStar key={i} color={COLOR_LOGAVIV} style={{verticalAlign: 'bottom'}} />)
   }
 
   return (<span>{stars.map((star) => star)}</span>)

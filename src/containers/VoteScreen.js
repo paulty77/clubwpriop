@@ -13,6 +13,7 @@ import '../styles/Vote.css'
 import MenuNavigation from '../components/MenuNavigation'
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 import Snackbar from 'material-ui/Snackbar'
+import LinearProgress from 'material-ui/LinearProgress'
 
 export class VoteScreen extends Component {
   componentDidMount () {
@@ -29,6 +30,9 @@ export class VoteScreen extends Component {
     const snackbar = this.props && this.props.apiState === 'error'
       ? <Snackbar open message='Pas de réseau' autoHideDuration={2000} onRequestClose={() => dispatch(currentUserApiStateReset())} />
       : ''
+    const linearPending = this.props && this.props.apiState === 'pending'
+      ? <LinearProgress mode='indeterminate' style={{backgroundColor: 'white'}} />
+      : null
 
     return (
       <DocumentTitle title='Votez'>
@@ -37,6 +41,7 @@ export class VoteScreen extends Component {
           <Card>
             <Sticky innerZ={100}>
               <AppBar title='Evolutions à voter' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
+              <div style={{height: 8}}>{linearPending}</div>
               <div className='stars'>{stars}</div>
             </Sticky>
             <CardText>
