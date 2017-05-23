@@ -45,7 +45,7 @@ export class VoteScreen extends Component {
                   <SubjectWidget
                     subject={subject}
                     key={subject.id}
-                    canAdd={statusVote !== 'vote-closed' && total > 0}
+                    canAdd={statusVote !== 'vote-closed' && total > 0 && subject.points < 5}
                     canRemove={statusVote !== 'vote-closed' && subject.points > 0}
                     onAdd={() => dispatch(addPoint(subject, idUser, totalSubjects.points))}
                     onRemove={() => dispatch(removePoint(subject, idUser))} />

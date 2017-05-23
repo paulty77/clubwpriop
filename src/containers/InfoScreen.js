@@ -35,7 +35,7 @@ export class InfoScreen extends Component {
               Vous disposez de 10 <ToggleStar color={COLOR_LOGAVIV} style={{verticalAlign: 'middle', margin: '0 5px'}} /> à répartir en fonction de vos intérêts à l'aide des boutons
               <FloatingActionButton iconStyle={{width: '30px', height: '30px'}} style={{verticalAlign: 'middle', margin: '5px'}} backgroundColor={COLOR_LOGAVIV}><ContentAdd style={{width: '20px', height: '20px'}} /></FloatingActionButton>
               et <FloatingActionButton iconStyle={{width: '30px', height: '30px'}} secondary style={{verticalAlign: 'middle', margin: '5px'}} ><ContentRemove style={{width: '20px', height: '20px'}} /></FloatingActionButton><br />
-              Vous êtes limité à  5 étoiles par item.
+              Vous êtes limité à  5 étoiles maximum par item.
             </CardText>
             <CardActions style={{ textAlign: 'center' }}>
               <RaisedButton
