@@ -12,3 +12,10 @@
 .subject .button+.button {
   margin-left: 10px;
 }
+
+
+.subject .summary h4 {
+  font-weight: normal;
+  display: flex;
+  margin: 0;
+}

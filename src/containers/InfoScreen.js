@@ -29,13 +29,12 @@ export class InfoScreen extends Component {
                 title={<AppTitle />} onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
             </Sticky>
             <CardText >
-              Cher client, Bienvenue au Club WPRIOP<br /><br />
+              Cher client,<br />Bienvenue au Club WPRIOP<br /><br />
               Donnez-nous votre avis sur les prochaines évolutions de  la solution.<br /><br />
-              <u>Déroulé</u> :<br />
-              Vous disposez de 10 <ToggleStar color={COLOR_LOGAVIV} style={{verticalAlign: 'middle', margin: '0 5px'}} />, à répartir à l'aide des boutons
-              <FloatingActionButton mini style={{verticalAlign: 'middle', margin: '0 5px'}} backgroundColor={COLOR_LOGAVIV}><ContentAdd /></FloatingActionButton>
-              et <FloatingActionButton mini secondary style={{verticalAlign: 'middle', margin: '0 5px'}} ><ContentRemove /></FloatingActionButton>
-              sur les propositions d’évolutions en fonction de vos intérêts.
+              <u><b>Déroulé</b></u> :<br /><br />
+              Vous disposez de 10 <ToggleStar color={COLOR_LOGAVIV} style={{verticalAlign: 'middle', margin: '0 5px'}} /> à répartir en fonction de vos intérêts à l'aide des boutons
+              <FloatingActionButton iconStyle={{width: '30px', height: '30px'}} style={{verticalAlign: 'middle', margin: '5px'}} backgroundColor={COLOR_LOGAVIV}><ContentAdd style={{width: '20px', height: '20px'}} /></FloatingActionButton>
+              et <FloatingActionButton iconStyle={{width: '30px', height: '30px'}} secondary style={{verticalAlign: 'middle', margin: '5px'}} ><ContentRemove style={{width: '20px', height: '20px'}} /></FloatingActionButton><br />
               Vous êtes limité à  5 étoiles par item.
             </CardText>
             <CardActions style={{ textAlign: 'center' }}>

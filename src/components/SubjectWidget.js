@@ -14,7 +14,7 @@ const SubjectWidget = ({subject: { label, points, number }, onAdd, onRemove, can
     <div>
       <div className='subject'>
         <div className='summary'>
-          <h4>{number} {label}</h4>
+          <h4><p>{number}&nbsp;</p> <p>{label}</p></h4>
         </div>
         {buttonRemove}
         {buttonAdd}
