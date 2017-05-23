@@ -26,7 +26,11 @@ export class VoteScreen extends Component {
     const { subjects, dispatch, statusVote, idUser, menuOpen } = this.props
     const totalSubjects = subjects.length !== 0 ? subjects.reduce((tot, subject) => ({points: tot.points + subject.points})) : 0
     const total = statusVote === 'vote-opened' ? MAX_POINTS - totalSubjects.points : 0
-    const stars = statusVote === 'vote-closed' ? 'Les votes sont clos' : (<span>A répartir :<RateStar total={total} /></span>)
+    const stars = statusVote === 'vote-closed'
+      ? 'Les votes sont clos'
+      : total === 0
+        ? (<span style={{color: 'red'}}>Nombres d'étoiles atteint, vous pouvez modifier votre vote jusqu'à la fin de la présentation</span>)
+        : (<span>A répartir :<RateStar total={total} /></span>)
     const snackbar = this.props && this.props.apiState === 'error'
       ? <Snackbar open message='Pas de réseau' autoHideDuration={2000} onRequestClose={() => dispatch(currentUserApiStateReset())} />
       : ''
@@ -44,7 +48,7 @@ export class VoteScreen extends Component {
               <div style={{height: 8}}>{linearPending}</div>
               <div className='stars'>{stars}</div>
             </Sticky>
-            <CardText>
+            <CardText style={{paddingTop: 0}}>
               {
                 subjects.map((subject) =>
                   <SubjectWidget
