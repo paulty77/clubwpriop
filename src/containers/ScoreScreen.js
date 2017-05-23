@@ -38,7 +38,7 @@ export class ScoreScreen extends Component {
 
     const title = (
       <div className='title'>
-        Club <img src={LogoW} height={'20vh'} /> - votre avis sur les évolutions futures de WPRIOP - 8 juin 2017 <img src={LogoL} height={'40vh'} />
+        Club&nbsp;<img src={LogoW} height={'20vh'} /> Résultats des votes en temps réel <img src={LogoL} height={'40vh'} />
       </div>)
 
     return (
@@ -48,7 +48,7 @@ export class ScoreScreen extends Component {
           <div className='body'>
             {
               this.state.results.map((result) =>
-                <ResultWidget label={result.label} points={result.points} total={subjectsCummulate.points} key={result.id} />
+                <ResultWidget label={result.label} points={result.points} number={result.number} total={subjectsCummulate.points} key={result.id} />
               )
             }
           </div>

@@ -6,7 +6,7 @@ import RateStar from './RateStar'
 import '../styles/SubjectWidget.css'
 import { COLOR_LOGAVIV } from '../lib/globals'
 
-const SubjectWidget = ({subject: { label, points }, onAdd, onRemove, canAdd, canRemove}) => {
+const SubjectWidget = ({subject: { label, points, number }, onAdd, onRemove, canAdd, canRemove}) => {
   const buttonAdd = <FloatingActionButton mini className='button' backgroundColor={COLOR_LOGAVIV} onClick={onAdd} disabled={!canAdd}><ContentAdd /></FloatingActionButton>
   const buttonRemove = <FloatingActionButton mini secondary className='button' onClick={onRemove} disabled={!canRemove}><ContentRemove /> </FloatingActionButton>
 
@@ -14,12 +14,10 @@ const SubjectWidget = ({subject: { label, points }, onAdd, onRemove, canAdd, can
     <div>
       <div className='subject'>
         <div className='summary'>
-          <h4>{label}</h4>
+          <h4>{number} {label}</h4>
         </div>
-        <div className='actions'>
-          {buttonRemove}
-          {buttonAdd}
-        </div>
+        {buttonRemove}
+        {buttonAdd}
       </div>
       <RateStar total={points} />
     </div>

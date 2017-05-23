@@ -6,4 +6,9 @@
 
 .subject  .summary {
   flex-grow :1;
+  margin-right: 20px;
+}
+
+.subject .button+.button {
+  margin-left: 10px;
 }

@@ -36,7 +36,7 @@ export class VoteScreen extends Component {
           <MenuNavigation open={menuOpen} onClose={() => dispatch(toggleMenu(false))} />
           <Card>
             <Sticky innerZ={100}>
-              <AppBar title='Votez sur les évolutions futures' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
+              <AppBar title='Evolutions à voter' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
               <div className='stars'>{stars}</div>
             </Sticky>
             <CardText>

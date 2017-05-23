@@ -10,7 +10,7 @@ const MenuNavigation = ({onClose, open}) => {
   return (
     <Drawer open={open} docked={false} onRequestChange={onClose}>
       <MenuItem leftIcon={<Home />} containerElement={<Link to='/' />} onTouchTap={onClose}>Accueil</MenuItem>
-      <MenuItem leftIcon={<ToggleStar />} containerElement={<Link to='/vote' />} onTouchTap={onClose}>Accèder au sondage</MenuItem>
+      <MenuItem leftIcon={<ToggleStar />} containerElement={<Link to='/vote' />} onTouchTap={onClose}>Accéder au sondage</MenuItem>
       <MenuItem leftIcon={<Settings />} containerElement={<Link to='/change' />} onTouchTap={onClose}>Changer son email</MenuItem>
     </Drawer>
   )

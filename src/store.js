@@ -19,8 +19,8 @@ const DEFAULT_STATE = {
 }
 
 const enhancer = compose(
- autoRehydrate(),
  applyMiddleware(thunkMiddleware),
+ autoRehydrate(),
   typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__
 ? window.__REDUX_DEVTOOLS_EXTENSION__()
 : (x) => x

@@ -11,6 +11,7 @@ import VoteScreen from './containers/VoteScreen'
 import ScoreScreen from './containers/ScoreScreen'
 import AdminScreen from './containers/AdminScreen'
 import ChangeEmailScreen from './containers/ChangeEmailScreen'
+import RefreshScreen from './containers/RefreshScreen'
 import './styles/Main.css'
 import {grey500} from 'material-ui/styles/colors'
 
@@ -33,9 +34,14 @@ render(
           <Route exact path='/admin' component={AdminScreen} />
           <Route exact path='/vote' component={VoteScreen} />
           <Route exact path='/change' component={ChangeEmailScreen} />
+          <Route exact path='/refresh' component={RefreshScreen} />
         </div>
       </Router>
     </MuiThemeProvider>
   </Provider>
   , document.getElementById('root')
 )
+
+if (module.hot) {
+  module.hot.accept()
+}
