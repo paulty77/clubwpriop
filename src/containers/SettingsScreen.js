@@ -31,6 +31,9 @@ export class SettingsScreen extends Component {
   }
 
   render () {
+    const subjectsCummulate = this.state.results.length !== 0
+      ? this.state.results.reduce((tot, subject) => ({points: tot.points + subject.points}))
+      : 0
     return (
       <DocumentTitle title='Tableau de board'>
         <Card>
@@ -43,9 +46,9 @@ export class SettingsScreen extends Component {
           <CardText>
             Résultats des votes
             {
-                this.state.results.map((result) =>
-                  <ResultWidget result={result} key={result.id} />
-                )
+              this.state.results.map((result) =>
+                <ResultWidget label={result.label} points={result.points} number={result.number} total={subjectsCummulate.points} key={result.id} />
+              )
             }
           </CardText>
         </Card>
