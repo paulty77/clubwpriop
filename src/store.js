@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import clubWpriopReducer from './reducers'
 import thunkMiddleware from 'redux-thunk'
 import {persistStore, autoRehydrate} from 'redux-persist'
+import localForage from 'localforage'
 
 const DEFAULT_STATE = {
   admin: {
@@ -27,6 +28,6 @@ const enhancer = compose(
 )
 
 const store = createStore(clubWpriopReducer, DEFAULT_STATE, enhancer)
-persistStore(store)
+persistStore(store, {storage: localForage})
 
 export default store
