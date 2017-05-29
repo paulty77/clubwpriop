@@ -21,7 +21,7 @@ export class SettingsScreen extends Component {
                         onSetStatusVote={() => this.props.dispatch(setStatusVote(!this.props.statusVote))} />
           </div>} />
           <CardText>
-            <iframe src={url} width='100%' height='600' frameBorder='0' marginWidth='0' marginHeight='0' />
+            <iframe src={url} width='100%' height='600' marginWidth='0' marginHeight='0' />
           </CardText>
         </Card>
       </DocumentTitle>
