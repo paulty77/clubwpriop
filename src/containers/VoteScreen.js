@@ -45,7 +45,7 @@ export class VoteScreen extends Component {
           <Card>
             <Sticky innerZ={100}>
               <AppBar title='Evolutions à voter' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
-              <div style={{height: 8}}>{linearPending}</div>
+              <div style={{height: 8, backgroundColor: 'white'}}>{linearPending}</div>
               <div className='stars'>{stars}</div>
             </Sticky>
             <CardText style={{paddingTop: 0}}>
