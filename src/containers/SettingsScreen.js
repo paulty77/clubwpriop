@@ -2,38 +2,15 @@ import React, {Component} from 'react'
 import DocumentTitle from 'react-document-title'
 import { connect } from 'react-redux'
 import {Card, CardText, CardTitle} from 'material-ui/Card'
-import ResultWidget from '../components/ResultWidget'
 import OpenClose from '../components/OpenClose'
 import {setStatusVote} from '../action-creators'
-import callAPI from '../lib/api'
-import { REFRESH_INTERVAL } from '../lib/globals'
+import { URL_WEB_API_PROD, URL_WEB_API_DEV } from '../lib/globals'
 
 export class SettingsScreen extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {results: []}
-  }
-
-  async setData () {
-    const data = await callAPI({
-      action: '/vote',
-      method: 'GET'
-    })
-    this.setState({results: data})
-  }
-
-  componentDidMount () {
-    this.timer = setInterval(() => this.setData(), REFRESH_INTERVAL)
-  }
-
-  componentWillUnmount () {
-    clearInterval(this.timer)
-  }
-
   render () {
-    const subjectsCummulate = this.state.results.length !== 0
-      ? this.state.results.reduce((tot, subject) => ({points: tot.points + subject.points}))
-      : 0
+    const urlRoot = process.env.NODE_ENV === 'dev' ? URL_WEB_API_DEV : URL_WEB_API_PROD
+    const url = `${urlRoot.replace('/api', '')}/score`
+
     return (
       <DocumentTitle title='Tableau de board'>
         <Card>
@@ -44,12 +21,7 @@ export class SettingsScreen extends Component {
                         onSetStatusVote={() => this.props.dispatch(setStatusVote(!this.props.statusVote))} />
           </div>} />
           <CardText>
-            Résultats des votes
-            {
-              this.state.results.map((result) =>
-                <ResultWidget label={result.label} points={result.points} number={result.number} total={subjectsCummulate.points} key={result.id} />
-              )
-            }
+            <iframe src={url} width='100%' height='600' frameBorder='0' marginWidth='0' marginHeight='0' />
           </CardText>
         </Card>
       </DocumentTitle>
