@@ -4,7 +4,7 @@ import DocumentTitle from 'react-document-title'
 import {Card, CardActions, CardText} from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
 import { Link, Redirect } from 'react-router-dom'
-import { addPoint, removePoint, MAX_POINTS, toggleMenu, currentUserApiStateReset } from '../action-creators'
+import { addPoint, removePoint, MAX_POINTS, toggleMenu, currentUserApiStateReset, logOut } from '../action-creators'
 import SubjectWidget from '../components/SubjectWidget'
 import RateStar from '../components/RateStar'
 import Sticky from 'react-stickynode'
@@ -23,6 +23,10 @@ export class VoteScreen extends Component {
   }
 
   render () {
+    if (!this.props.email || this.props.subjects.length === 0) {
+      return (<Redirect to='/' />)
+    }
+
     const { subjects, dispatch, statusVote, idUser, menuOpen } = this.props
     const totalSubjects = subjects.length !== 0 ? subjects.reduce((tot, subject) => ({points: tot.points + subject.points})) : 0
     const total = statusVote === 'vote-opened' ? MAX_POINTS - totalSubjects.points : 0
@@ -41,7 +45,7 @@ export class VoteScreen extends Component {
     return (
       <DocumentTitle title='Votez'>
         <div>
-          <MenuNavigation open={menuOpen} onClose={() => dispatch(toggleMenu(false))} />
+          <MenuNavigation logOut={() => dispatch(logOut())} open={menuOpen} onClose={() => dispatch(toggleMenu(false))} />
           <Card>
             <Sticky innerZ={100}>
               <AppBar title='Evolutions à voter' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />

@@ -9,6 +9,7 @@ export const CHANGE_EMAIL_SUCCESS = '@@CLUBWPRIOP/CHANGE_EMAIL_SUCCESS'
 export const CHANGE_EMAIL_FAILURE = '@@CLUBWPRIOP/CHANGE_EMAIL_FAILURE'
 export const CURRENTUSER_APISTATE_RESET = '@@CLUBWPRIOP/CHANGE_EMAIL_RESET'
 export const MENU_OPEN = '@@CLUBWPRIOP/MENU_OPEN'
+export const LOG_OUT = '@@CLUBWPRIOP/LOG_OUT'
 
 export function emailIn (email) {
   return async (dispatch) => {
@@ -239,4 +240,8 @@ export function setStatusVoteStart () {
 
 export function setStatusVoteSuccess (statusVote) {
   return {type: SET_STATUS_VOTE_SUCCESS, payload: {statusVote}}
+}
+
+export function logOut () {
+  return {type: LOG_OUT}
 }

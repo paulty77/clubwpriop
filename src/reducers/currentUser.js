@@ -1,5 +1,5 @@
 import {USER_EMAIL_START, USER_EMAIL_FAILURE, USER_EMAIL_SUCCESS, USER_SET_STATUS_VOTE, CHANGE_EMAIL_START,
-        CHANGE_EMAIL_FAILURE, CHANGE_EMAIL_SUCCESS, CURRENTUSER_APISTATE_RESET, MENU_OPEN, USER_VOTE_FAILURE, USER_VOTE_START} from '../action-creators'
+        CHANGE_EMAIL_FAILURE, CHANGE_EMAIL_SUCCESS, CURRENTUSER_APISTATE_RESET, MENU_OPEN, USER_VOTE_FAILURE, USER_VOTE_START, LOG_OUT} from '../action-creators'
 
 export default function currentUser (state = {email: null, statusVote: 'vote-opened', apiState: null, menuOpen: false}, action) {
   switch (action.type) {
@@ -24,6 +24,8 @@ export default function currentUser (state = {email: null, statusVote: 'vote-ope
       return {email: state.email, idUser: state.idUser, statusVote: state.statusVote, apiState: null, menuOpen: false}
     case MENU_OPEN:
       return {email: state.email, idUser: state.idUser, statusVote: state.statusVote, apiState: null, menuOpen: action.payload.menuOpen}
+    case LOG_OUT:
+      return {email: null, idUser: null, statusVote: null, apiState: null, menuOpen: false}
 
     default:
       return state

@@ -7,7 +7,7 @@ import {connect} from 'react-redux'
 import AppBar from 'material-ui/AppBar'
 import Sticky from 'react-stickynode'
 import MenuNavigation from '../components/MenuNavigation'
-import { toggleMenu } from '../action-creators'
+import { toggleMenu, logOut } from '../action-creators'
 import AppTitle from '../components/AppTitle'
 import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward'
 import { COLOR_LOGAVIV } from '../lib/globals'
@@ -22,7 +22,7 @@ export class InfoScreen extends Component {
     return (
       <DocumentTitle title='Informations'>
         <div>
-          <MenuNavigation open={menuOpen} onClose={() => dispatch(toggleMenu(false))} />
+          <MenuNavigation logOut={() => dispatch(logOut())} open={menuOpen} onClose={() => dispatch(toggleMenu(false))} />
           <Card>
             <Sticky innerZ={100}>
               <AppBar
