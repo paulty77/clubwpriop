@@ -37,7 +37,7 @@ export class RefreshScreen extends Component {
           <form onSubmit={this.refresh}>
             <Card>
               <Sticky innerZ={100}>
-                <AppBar
+                <AppBar className='AppBar'
                   title={<AppTitle />} onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
               </Sticky>
               <CardText>

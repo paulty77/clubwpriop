@@ -14,13 +14,17 @@ import ChangeEmailScreen from './containers/ChangeEmailScreen'
 import RefreshScreen from './containers/RefreshScreen'
 import './styles/Main.css'
 import {grey500} from 'material-ui/styles/colors'
+import { COLOR_GRAINBOW, COLOR_AGRIMARKET } from './lib/globals.js'
 
 injectTapEventPlugin()
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: '#1072ad',
+    primary1Color: COLOR_GRAINBOW,
     accent1Color: grey500
+  },
+  raisedButton: {
+    secondaryColor: COLOR_AGRIMARKET
   }
 })
 

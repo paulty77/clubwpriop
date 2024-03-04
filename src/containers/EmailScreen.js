@@ -27,16 +27,16 @@ export class EmailScreen extends Component {
     const snackbar = this.props && this.props.apiState === 'error'
       ? <Snackbar open message='Vote clos pour le moment' autoHideDuration={3000} />
       : ''
-    const logInIcon = this.props.apiState === 'pending' ? null : <ArrowForward />
+    const logInIcon = this.props.apiState === 'pending' ? <span className='loader' /> : <ArrowForward />
 
     return (
       <DocumentTitle title='Identifiez-vous'>
         <form onSubmit={this.login}>
-          <Card>
-            <Sticky innerZ={100}>
-              <AppBar
-                title={<AppTitle />} showMenuIconButton={false} />
-            </Sticky>
+          <Sticky innerZ={100}>
+            <AppBar className='AppBar'
+              title={<AppTitle />} showMenuIconButton={false} />
+          </Sticky>
+          <Card style={{margin: '10px'}}>
             <CardText>
               <TextField type='email'
                 hintText='email@domaine.com'
@@ -46,8 +46,8 @@ export class EmailScreen extends Component {
                 required
                 onChange={(event) => { this.userEmail = event.target.value }} />
             </CardText>
-            <CardActions>
-              <RaisedButton label='Se connecter' icon={logInIcon} labelPosition='before' primary type='submit' />
+            <CardActions style={{ padding: '12px' }}>
+              <RaisedButton label='Se connecter' icon={logInIcon} labelPosition='before' secondary type='submit' />
             </CardActions>
           </Card>
           {snackbar}

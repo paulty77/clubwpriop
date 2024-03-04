@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import DocumentTitle from 'react-document-title'
 import { adminLogIn } from '../action-creators'
 import '../styles/Login.css'
+import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward'
 
 export class LoginScreen extends Component {
   constructor (props) {
@@ -24,11 +25,13 @@ export class LoginScreen extends Component {
       ? <Snackbar open message='Identifiant ou mot de passe invalide' autoHideDuration={3000} />
       : ''
 
+    const logInIcon = this.props.loginState === 'pending' ? <span className='loader' /> : <ArrowForward />
+
     return (
       <DocumentTitle title='Identifiez-vous'>
         <form onSubmit={this.login}>
           <Card className='login'>
-            <CardTitle title='Club Wpriop' subtitle='Admin' />
+            <CardTitle title='Lancement Nouvelle Version' subtitle='Admin' />
             <CardText>
               <TextField type='text'
                 hintText='mon login'
@@ -49,7 +52,7 @@ export class LoginScreen extends Component {
 
             </CardText>
             <CardActions>
-              <RaisedButton label='Se connecter' labelPosition='before' primary type='submit' />
+              <RaisedButton label='Se connecter' icon={logInIcon} labelPosition='before' secondary type='submit' />
             </CardActions>
           </Card>
           {snackbar}

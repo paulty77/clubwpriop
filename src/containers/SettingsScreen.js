@@ -13,15 +13,21 @@ export class SettingsScreen extends Component {
 
     return (
       <DocumentTitle title='Tableau de board'>
-        <Card>
-          <CardTitle title={<div>
-                      Paramètres
-                      <OpenClose
-                        statusVote={this.props.statusVote}
-                        onSetStatusVote={() => this.props.dispatch(setStatusVote(!this.props.statusVote))} />
-          </div>} />
-          <CardText>
-            <iframe src={url} width='100%' height='600' marginWidth='0' marginHeight='0' />
+        <Card style={{margin: '10px', height: 'calc(100vh - 20px)'}} containerStyle={{height: '100%', padding: 0}}>
+          <CardTitle title={
+            <div style={{display: 'flex', justifyContent: 'space-between'}}>
+              <div>
+                Paramètres
+              </div>
+              <div>
+                <OpenClose
+                  statusVote={this.props.statusVote}
+                  onSetStatusVote={() => this.props.dispatch(setStatusVote(!this.props.statusVote))} />
+              </div>
+            </div>
+        } />
+          <CardText style={{height: 'calc(100% - 68px - 32px)'}}>
+            <iframe src={url} width='100%' height='600' marginWidth='0' marginHeight='0' style={{border: 'none', height: '-webkit-fill-available'}} />
           </CardText>
         </Card>
       </DocumentTitle>

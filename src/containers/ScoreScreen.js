@@ -4,8 +4,8 @@ import ResultWidget from '../components/ResultWidget'
 import callAPI from '../lib/api'
 import AppBar from 'material-ui/AppBar'
 import { REFRESH_INTERVAL } from '../lib/globals'
-import LogoL from '../icons/logo_logaviv.svg'
-import LogoW from '../icons/logo-wpriop-blanc.svg'
+import LogoAgrimarket from '../icons/logo_agrimarket_white.svg'
+import LogoGrainbow from '../icons/logo_grainbow_white.svg'
 import '../styles/Score.css'
 
 export class ScoreScreen extends Component {
@@ -37,14 +37,17 @@ export class ScoreScreen extends Component {
       : 0
 
     const title = (
-      <div className='title'>
-        Club&nbsp;<img src={LogoW} height={'20vh'} /> Résultats des votes en temps réel <img src={LogoL} height={'40vh'} />
-      </div>)
+      <div className='AppTitle'>
+        <div><img src={LogoAgrimarket} /></div>
+        <div><span>Résultats des votes en temps réel</span></div>
+        <div style={{justifyContent: 'flex-end'}}><img src={LogoGrainbow} /></div>
+      </div>
+      )
 
     return (
       <DocumentTitle title='Résultat des votes'>
         <div className='score'>
-          <AppBar title={title} showMenuIconButton={false} />
+          <AppBar className='AppBar' title={title} showMenuIconButton={false} />
           <div className='body'>
             {
               this.state.results.map((result) =>
