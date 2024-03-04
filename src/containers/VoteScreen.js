@@ -31,12 +31,12 @@ export class VoteScreen extends Component {
     const totalSubjects = subjects.length !== 0 ? subjects.reduce((tot, subject) => ({points: tot.points + subject.points})) : 0
     const total = statusVote === 'vote-opened' ? MAX_POINTS - totalSubjects.points : 0
     const stars = statusVote === 'vote-closed'
-      ? 'Les votes sont clos'
+      ? <span className='share-ended'>Les votes sont clos</span>
       : total === 0
-        ? (<span style={{color: 'red'}}>Nombres d'étoiles atteint, vous pouvez modifier votre vote jusqu'à la fin de la présentation</span>)
-        : (<span>A répartir :<RateStar total={total} /></span>)
+        ? (<span className='share-ended'>Nombres d'étoiles atteint, vous pouvez modifier votre vote jusqu'à la fin de la présentation</span>)
+        : (<span className='to-share'>A répartir : <RateStar total={total} /></span>)
     const snackbar = this.props && this.props.apiState === 'error'
-      ? <Snackbar open message='Pas de réseau' autoHideDuration={2000} onRequestClose={() => dispatch(currentUserApiStateReset())} />
+      ? <Snackbar open message='Pas de réseau' autoHideDuration={3000} onRequestClose={() => dispatch(currentUserApiStateReset())} />
       : ''
     const linearPending = this.props && this.props.apiState === 'pending'
       ? <LinearProgress mode='indeterminate' style={{backgroundColor: 'white'}} />
@@ -46,12 +46,13 @@ export class VoteScreen extends Component {
       <DocumentTitle title='Votez'>
         <div>
           <MenuNavigation logOut={() => dispatch(logOut())} open={menuOpen} onClose={() => dispatch(toggleMenu(false))} />
-          <Card>
-            <Sticky innerZ={100}>
-              <AppBar title='Evolutions à voter' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
-              <div style={{height: 8, backgroundColor: 'white'}}>{linearPending}</div>
-              <div className='stars'>{stars}</div>
-            </Sticky>
+          <Sticky innerZ={100}>
+            <AppBar title='Evolutions à voter' onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
+            <div style={{height: 8, backgroundColor: 'white'}}>{linearPending}</div>
+            <div className='stars'>{stars}</div>
+          </Sticky>
+
+          <Card style={{margin: '10px'}}>
             <CardText style={{paddingTop: 0}}>
               {
                 subjects.map((subject) =>
@@ -65,8 +66,8 @@ export class VoteScreen extends Component {
                 )
               }
             </CardText>
-            <CardActions style={{textAlign: 'right'}}>
-              <RaisedButton label='Retour' icon={<ArrowBack />} primary containerElement={<Link to='/' />} />
+            <CardActions style={{textAlign: 'right', padding: '12px'}}>
+              <RaisedButton style={{margin: 0}} label='Retour' icon={<ArrowBack />} secondary containerElement={<Link to='/' />} />
             </CardActions>
           </Card>
           {snackbar}

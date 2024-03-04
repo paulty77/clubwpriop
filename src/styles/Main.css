@@ -2,3 +2,57 @@ BODY {
   padding :0;
   margin: 0;
 }
+.fixButton, .fixButton button {
+  line-height: 1.2!important;
+}
+
+.loader {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 4px;
+}
+
+.loader:after {
+  content: " ";
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.AppBar {
+  padding-left: 12px!important;
+  padding-right: 12px!important;
+}
+.AppTitle {
+  display: flex;
+  height: 100%;
+}
+
+.AppTitle .title, .AppTitle .logo {
+  font-size: clamp(0.85rem, 2vw, 1.5rem);
+  display: flex;
+  flex: 1 1 50%;
+  align-items: center;
+}
+
+.AppTitle .logo {
+  justify-content: flex-end;
+}
+.AppTitle .logo img {
+  height: 100%;
+  width: 100%;
+  max-width: fit-content;
+}

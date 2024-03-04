@@ -1,3 +1,4 @@
+
 .result {
   display :flex;
   flex-wrap:  nowrap;
@@ -7,21 +8,24 @@
 
 
 .result .summary {
-  flex-grow :1;
-  align-items : center;
-  position: relative;
-  background-color: rgb(238, 238, 238);
+    flex-grow: 1;
+    align-items: center;
+    position: relative;
+    background-color: rgb(238, 238, 238);
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .result .summary .title {
     padding: 20px;
     position: relative;
-    color: #9E9E9E;
+    color: rgba(0, 0, 0, 0.6);
     font-weight: bold;
+    border-radius: 3px;
 }
 
 .result .summary .bar {
-    background-color: rgb(103, 170, 46);
+    background-color: #00C389;
     width: 43.6364%;
     position: absolute;
     top: 0px;
@@ -34,7 +38,7 @@
 .result .summary .bar .title {
     padding: 20px;
     position: relative;
-    color: white;
+    color: #000000;
     white-space: nowrap;
     font-weight: bold;
 }
@@ -46,7 +50,6 @@
     text-align: right;
     justify-content: flex-end;
     font-weight: bold;
-    color : rgb(103, 170, 46);
+    color : #00C389;
     font-size: 18px;
 }
-

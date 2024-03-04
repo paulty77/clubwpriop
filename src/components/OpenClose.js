@@ -7,7 +7,7 @@ const OpenClose = ({ onSetStatusVote, statusVote }) => {
   const color = !statusVote ? colors.red400 : colors.green600
 
   return (
-    <RaisedButton label={label} backgroundColor={color} labelColor={colors.white} onClick={onSetStatusVote} />
+    <RaisedButton className='fixButton' label={label} backgroundColor={color} labelColor={colors.white} onClick={onSetStatusVote} />
   )
 }
 

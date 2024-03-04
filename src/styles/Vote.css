@@ -1,6 +1,30 @@
 .stars {
-  margin : 0 0 0px 0.83em;
   background-color: white;
-  padding: 0.83em 0 0 0;
-  height: 50px;
+  padding: 0 12px 8px;
+  box-sizing: border-box;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.stars .share-ended {
+  font-family: 'Roboto';
+  color: #ff0033;
+  font-weight: 500;
+}
+.stars .to-share {
+  font-family: 'Roboto';
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.sticky-outer-wrapper.active .sticky-inner-wrapper {
+  box-shadow: black 0px 0px 10px -2px;
+}
+
+.sticky-outer-wrapper .sticky-inner-wrapper {
+  transition: box-shadow ease 0.3s;
+  background-color: #ffffff;
 }

@@ -22,3 +22,42 @@
   margin : auto 0 0.25em 0.5em ;
   flex-shrink:   0;
 }
+
+
+
+.score .AppTitle {
+  display: flex;
+  position: sticky;
+  top: 0;
+  align-items: center;
+  justify-content: space-evenly;
+  z-index: 1000;
+  height: 100%;
+  gap: 10px;
+}
+
+.score .AppTitle div {
+    font-size: clamp(0.8rem, 2vw, 1.5rem);
+    display: flex;
+    flex: 1 1 33.33%;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    width: 100%;
+}
+
+.score .AppTitle div span {
+  text-align: center;
+  width: 100%;
+}
+
+.score .AppTitle div img {
+  height: 95%;
+  width: 100%;
+  max-width: fit-content;
+}
+@media (max-width: 321px) {
+  .score .AppTitle div img {
+    display: none;
+  }
+}

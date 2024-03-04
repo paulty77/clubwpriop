@@ -32,7 +32,7 @@ export class ChangeEmailScreen extends Component {
   render () {
     const { dispatch, apiState, menuOpen } = this.props
     const snackbar = this.props && (apiState === 'error' || apiState === 'success')
-      ? <Snackbar open message={apiState === 'error' ? 'Email non modifié' : 'Email modifié'} onRequestClose={() => dispatch(currentUserApiStateReset())} bodyStyle={{ backgroundColor: apiState === 'error' ? red800 : green700 }} autoHideDuration={2000} />
+      ? <Snackbar open message={apiState === 'error' ? 'Email non modifié' : 'Email modifié'} onRequestClose={() => dispatch(currentUserApiStateReset())} bodyStyle={{ backgroundColor: apiState === 'error' ? red800 : green700 }} autoHideDuration={3000} />
       : ''
     const logInIcon = apiState === 'pending' ? null : <ArrowForward />
 
@@ -41,11 +41,11 @@ export class ChangeEmailScreen extends Component {
         <div>
           <MenuNavigation open={menuOpen} onClose={() => dispatch(toggleMenu(false))} />
           <form onSubmit={this.change}>
-            <Card>
-              <Sticky innerZ={100}>
-                <AppBar
-                  title={<AppTitle />} onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
-              </Sticky>
+            <Sticky innerZ={100}>
+              <AppBar className='AppBar'
+                title={<AppTitle />} onLeftIconButtonTouchTap={() => dispatch(toggleMenu(true))} />
+            </Sticky>
+            <Card style={{margin: '10px'}}>
               <CardText>
                 <TextField type='email'
                   hintText='email@domaine.com'
@@ -55,8 +55,8 @@ export class ChangeEmailScreen extends Component {
                   value={this.state.value}
                   onChange={(event) => this.setState({value: event.target.value})} />
               </CardText>
-              <CardActions>
-                <RaisedButton label='modifier' icon={logInIcon} labelPosition='before' primary type='submit' />
+              <CardActions style={{ padding: '12px' }}>
+                <RaisedButton label='modifier' icon={logInIcon} labelPosition='before' secondary type='submit' />
               </CardActions>
             </Card>
             {snackbar}
